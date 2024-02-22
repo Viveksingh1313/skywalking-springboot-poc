@@ -1,0 +1,7 @@
+version: '3.3'
+services:
+  mock:
+    image: holomekc/wiremock-gui
+    restart: always
+    ports:
+      - 9082:8080

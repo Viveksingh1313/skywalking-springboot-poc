@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+subprojects {
+    group = 'io.github.demo'
+    version = '1.0.0'
+    repositories {
+        mavenCentral()
+    }
+
+    ext {
+        set('springCloudVersion', "Greenwich.SR1")
+    }
+}

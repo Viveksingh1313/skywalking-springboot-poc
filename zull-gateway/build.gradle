@@ -1,0 +1,38 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+	id 'com.diffplug.gradle.spotless' version "3.23.0"
+    id 'java'
+}
+apply plugin: 'io.spring.dependency-management'
+configurations {
+	compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+spotless {
+	java {
+		googleJavaFormat()
+		removeUnusedImports()
+		endWithNewline()
+	}
+}
+
+bootRun {
+	jvmArgs = ["-Dskywalking.agent.service_name=zull-gateway", "-javaagent:$rootDir/skywalking-agent/skywalking-agent.jar"]
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
+	implementation 'org.apache.skywalking:apm-toolkit-logback-1.x:9.1.0'
+	compileOnly 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}

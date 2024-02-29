@@ -15,7 +15,7 @@ gradle :user-service:bootRun
 
 ## Test with postman
 import `skywalking-poc.postman_collection.json` into postman
-Hit these curl calls multiple times :  
+Hit these curl calls multiple times:  
 
 curl --location 'http://localhost:9080/demo/api/user' \
 --header 'token: test' \
